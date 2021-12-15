@@ -1,0 +1,8 @@
+.row p{
+    font-size: 14px;
+    margin-left: 3px;
+}
+.no-border td
+{
+    border: none;
+}

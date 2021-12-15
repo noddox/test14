@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_retention_document">
+        <t t-call="pragtech_retention_report.external_layout_retention">
+            <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang)" />
+            <div class="page" style="font-size:14px">
+
+                <!-- header 1 -->
+                <div class="container pt-0 pl-0 pr-0">
+                    <div class="row align-items-center">
+                        <div class="col-7 text-center" style="font-size: 17px;">
+                            <b>COMPROBANTE DE RETENCIÓN DE IMPUESTO AL VALOR AGREGADO</b><br/>
+                Ley IVA - Art. 11: "Serán responsables del pago del impuesto en calidad de agentes de retención, los
+                compradores o adquirientes de determinados bienes muebles y los receptores de ciertos servicios, a quienes la
+                Administración Tributaria designe como tal
+                        </div>
+                        <div class="col-2">
+                            <table class="table table-bordered table-sm">
+                                <thead>
+                                    <tr>
+                                      <th scope="col" class="bg-light"><b>0. NRO. COMPROBANTE</b></th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                        <th scope="row" t-field="doc.ret_number"/>
+                                    </tr>
+                                  </tbody>
+                            </table>
+                        </div>
+
+                        <div class="col-1">
+                        </div>
+                        <div class="col-2">
+                            <table class="table table-bordered table-sm">
+                              <thead>
+                                <tr>
+                                  <th scope="col" class="bg-light"><b>1. FECHA</b></th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                  <tr t-if="doc.ret_date">
+                                      <th scope="row" t-field="doc.ret_date"/>
+                                  </tr>
+                                  <tr t-else="">
+                                      <th scope="row" style="height:20px;"/>
+                                  </tr>
+                              </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!--header 2-->
+                <div class="container pt-2 pl-0 pr-0">
+                    <div class="row align-items-center">
+                        <div class="col-5">
+                            <table class="table table-bordered table-sm m-0">
+                              <thead>
+                                <tr>
+                                    <th scope="col" class="bg-light"><b>2. NOMBRE O RAZÓN SOCIAL DEL AGENTE DE RETENCIÓN</b></th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                  <tr t-if="doc.company_id.name">
+                                      <th scope="row" t-field="doc.company_id.name"/>
+                                  </tr>
+                                  <tr t-else="">
+                                      <th scope="row" style="height:20px;"/>
+                                  </tr>
+                              </tbody>
+                            </table>
+                        </div>
+                        <div class="col-5">
+                            <table class="table table-bordered table-sm m-0">
+                              <thead>
+                                  <tr>
+                                      <th scope="col" class="bg-light"><b>3. REGISTRO DE INFORMACION FISCAL DEL AGENTE DE RETENCION</b></th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr t-if="doc.company_id.vat">
+                                      <th scope="row" class="text-center" t-field="doc.company_id.vat"/>
+                                  </tr>
+                                  <tr t-else="">
+                                      <th scope="row" style="height:20px;"/>
+                                  </tr>
+                              </tbody>
+                            </table>
+                        </div>
+                        <div class="col-2">
+                            <table class="table table-bordered table-sm m-0">
+                              <thead>
+                                  <tr>
+                                      <th scope="col" class="bg-light"><b>4. PERIODO FISCAL</b></th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr t-if="doc.ret_date">
+                                      <th scope="row" t-esc="doc.ret_date.strftime('AÑO: %Y / MES: %m')"/>
+                                  </tr>
+                                  <tr t-else="">
+                                      <th scope="row" style="height:20px;"/>
+                                  </tr>
+                              </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- header 3-->
+                <div class="container pt-2 pl-0 pr-0">
+                    <div class="row align-items-center">
+                        <div class="col-10">
+                            <table class="table table-bordered table-sm m-0">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="bg-light"><b>5. DIRECCION FISCAL DEL AGENTE DE RETENCION</b></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-if="doc.company_id.fiscal_address">
+                                        <th scope="row" t-field="doc.company_id.fiscal_address"/>
+                                    </tr>
+                                    <tr t-else="">
+                                        <th scope="row" style="height:20px;"/>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-2">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- header 4 -->
+                <div class="container pt-2 pl-0 pr-0">
+                    <div class="row align-items-center">
+                        <div class="col-5">
+                            <table class="table table-bordered table-sm m-0">
+                              <thead>
+                                  <tr>
+                                    <th scope="col" class="bg-light"><b>6. NOMBRE O RAZÓN SOCIAL DEL SUJETO RETENIDO</b></th>
+                                  </tr>
+
+                              </thead>
+                              <tbody>
+                                  <tr t-if="doc.partner_id.name">
+                                    <th scope="row" t-field="doc.partner_id.name"/>
+                                  </tr>
+                                  <tr t-else="">
+                                    <th scope="row" style="height:20px;"/>
+                                  </tr>
+                              </tbody>
+                            </table>
+                        </div>
+                        <div class="col-5">
+                            <table class="table table-bordered table-sm m-0">
+                              <thead>
+                                <tr>
+                                  <th scope="col" class="bg-light"><b>7. REGISTRO DE INFORMACION FISCAL DEL SUJETO RETENIDO</b></th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                  <tr t-if="doc.partner_id.vat">
+                                      <th scope="row" class="text-center" t-field="doc.partner_id.vat"/>
+                                  </tr>
+                                  <tr t-else="">
+                                      <th scope="row" style="height:20px;"/>
+                                  </tr>
+                              </tbody>
+                            </table>
+                        </div>
+                        <div class="col-2">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- header 4 -->
+                <div class="container pt-2 pl-0 pr-0">
+                    <div class="row align-items-center">
+                        <div class="col-10">
+                            <table class="table table-bordered table-sm m-0">
+                              <thead>
+                                  <tr>
+                                    <th scope="col" class="bg-light"><b>8. DIRECCION FISCAL DEL SUJETO RETENIDO</b></th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr t-if="doc.partner_id.fiscal_address">
+                                      <th scope="row" t-field="doc.partner_id.fiscal_address"/>
+                                  </tr>
+                                  <tr t-else="">
+                                      <th scope="row" style="height:20px;"/>
+                                  </tr>
+                              </tbody>
+                            </table>
+                        </div>
+                        <div class="col-2">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container pt-2 pl-0 pr-0">
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <th t-set="line_no" t-value="1"/>
+                            <table class="table table-bordered table-sm">
+                              <thead>
+                                <tr>
+                                  <th scope="col" class="text-center align-middle bg-light">#</th>
+                                  <th scope="col" class="text-center align-middle bg-light">Fecha</th>
+                                  <th scope="col" class="text-center align-middle bg-light"># Factura</th>
+                                  <th scope="col" class="text-center align-middle bg-light"># Control</th>
+                                  <th scope="col" class="text-center align-middle bg-light"># Nota de<br /> Débito</th>
+                                  <th scope="col" class="text-center align-middle bg-light"># Nota de<br /> Crédito</th>
+                                  <th scope="col" class="text-center align-middle bg-light">Tipo<br /> Trans.</th>
+                                  <th scope="col" class="text-center align-middle bg-light"># Documento</th>
+                                  <th scope="col" class="text-center align-middle bg-light">Total Compras<br /> con IVA</th>
+                                  <th scope="col" class="text-center align-middle bg-light">Total Compras<br /> sin IVA</th>
+                                  <th scope="col" class="text-center align-middle bg-light">Base<br /> Imponible</th>
+                                  <th scope="col" class="text-center align-middle bg-light">% Alic.</th>
+                                  <th scope="col" class="text-center align-middle bg-light">Impuesto<br /> IVA</th>
+                                  <th scope="col" class="text-center align-middle bg-light">IVA<br />Retenido</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                  <tr t-foreach="doc.ret_line_ids" t-as="line">
+                                      <td class="text-center">
+                                          <t t-esc="line_no"/>
+                                          <t t-set="line_no" t-value="line_no + 1"/>
+                                      </td>
+                                      <td class="text-left"><span t-field="line.move_id.invoice_date"/></td>
+                                      <td class="text-left"><span t-field="line.move_id.ref"/></td>
+                                      <td width="7%" class="text-left"><span t-field="line.ctrl_num"/></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td>01-reg</td>
+                                      <td></td>
+                                      <td class="text-right"><span t-field="line.move_id.amount_total" t-options='{"widget": "float", "precision": 2}'/></td>
+                                      <td class="text-right">0.00</td>
+                                      <td class="text-right"><span t-field="line.taxed_amount" t-options='{"widget": "float", "precision": 2}'/></td>
+                                      <td class="text-right"><span t-esc="line.get_tax_percentage()" t-options='{"widget": "float", "precision": 2}'/></td>
+                                      <td class="text-right"><span t-field="line.tax_amount" t-options='{"widget": "float", "precision": 2}'/></td>
+                                      <td class="text-right"><span t-field="line.ret_amount" t-options='{"widget": "float", "precision": 2}'/></td>
+                                  </tr>
+                                  <tr t-foreach="doc.ret_line_ids" t-as="line">
+                                      <th colspan="8" scope="row" class="text-right">TOTALES</th>
+                                      <td class="text-right"><span t-field="line.move_id.amount_total" t-options='{"widget": "float", "precision": 2}'/></td>
+                                      <td class="text-right">0.00</td>
+                                      <td class="text-right"><span t-field="line.taxed_amount" t-options='{"widget": "float", "precision": 2}'/></td>
+                                      <td class="text-right"><span t-esc="line.get_tax_percentage()" t-options='{"widget": "float", "precision": 2}'/></td>
+                                      <td class="text-right"><span t-field="line.tax_amount" t-options='{"widget": "float", "precision": 2}'/></td>
+                                      <td class="text-right"><span t-field="line.ret_amount" t-options='{"widget": "float", "precision": 2}'/></td>
+                                  </tr>
+                              </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-12" style="height: 180px">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container pt-1 pl-0 pr-0">
+                    <div class="row align-items-center">
+                        <div class="col-1">
+                        </div>
+                        <div class="col-2 text-right"><p>Firma Agente de Retención:</p></div>
+                        <div style="border-bottom:1px solid black;">
+                            <div style="min-width:300px;"/>
+                        </div>
+                        <div class="col-1">
+                        </div>
+                        <div class="col-2 text-right"><p>Firma Sujeto Retenido:</p></div>
+                        <div style="border-bottom:1px solid black;">
+                            <div style="min-width:300px;"/>
+                        </div>
+                        <div class="col-2">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container pt-4 pl-0 pr-0 pb-4">
+                    <div class="row align-items-center">
+                        <div class="col-1">
+                        </div>
+                        <div class="col-2 text-right"><p>Fecha Entrega:</p></div>
+                        <div style="border-bottom:1px solid black;">
+                            <div style="min-width:300px;"/>
+                        </div>
+                        <div class="col-1">
+                        </div>
+                        <div class="col-2 text-right"><p>Fecha Recepción:</p></div>
+                        <div style="border-bottom:1px solid black;">
+                            <div style="min-width:300px;"/>
+                        </div>
+                        <div class="col-2">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_template_retention">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="pragtech_retention_report.report_retention_document" t-lang="doc.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_retentions_iva" model="ir.actions.report">
+        <field name="name">Retentions</field>
+        <field name="model">retention.retentions</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">pragtech_retention_report.report_template_retention</field>
+        <field name="report_file">pragtech_retention_report.report_template_retention</field>
+        <field name="print_report_name">(object.name)</field>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="pragtech_retention_report.paperformat_retention_letter"/>
+    </record>
+</odoo>

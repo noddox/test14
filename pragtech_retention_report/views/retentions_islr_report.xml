@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_retention_islr_document">
+        <t t-call="pragtech_retention_report.external_layout_retention_islr">
+            <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang)" />
+            <div class="page">
+                <div class="row">
+                    <div class="col-12">
+                        <table class="table table-bordered">
+                            <tr>
+                                <td class="text-center" style="width:50%;">
+                                    <p>Proveedor / Beneficia</p>
+                                </td>
+                                <td class="text-center" style="width:50%;">
+                                    <p>Empresa</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <table class="no-border" style="width:100%">
+                                        <tr>
+                                            <td style="width:30%">
+                                                <span>Proveedor / Beneficia</span>
+                                            </td>
+                                            <td style="width:70%">
+                                                <p t-field="doc.partner_id.name"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:30%">
+                                                <span>R.I.F.</span>
+                                            </td>
+                                            <td style="width:70%">
+                                                <p t-field="doc.ret_date"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:30%">
+                                                <span>N.I.T.</span>
+                                            </td>
+                                            <td style="width:70%">
+<!--                                                <p t-field="doc.company_id.name"/>-->
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:30%">
+                                                <span>Dirección</span>
+                                            </td>
+                                            <td style="width:70%">
+                                                <p t-if="doc.partner_id.street" t-field="doc.partner_id.street"/>
+                                <span>, </span>
+                                <span t-if="doc.partner_id.city" t-field="doc.partner_id.city"/>
+                                <span>, </span>
+                                <span t-if="doc.partner_id.state_id" t-field="doc.partner_id.state_id.name"/><span>, </span>
+                                <span t-if="doc.partner_id.country_id" t-field="doc.partner_id.country_id.name"/>
+                                <span>, </span>
+                                <span t-if="doc.partner_id.zip" t-field="doc.partner_id.zip"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td>
+                                    <table class="no-border" style="width:100%">
+                                        <tr>
+                                            <td style="width:30%"/>
+                                            <td style="width:70%">
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><span>R.I.F</span></td>
+                                            <td>
+                                                <p t-field="doc.ret_date"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><span>N.I.T.</span></td>
+                                            <td>
+<!--                                                <p t-field="doc.company_id.name"/>-->
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><span>Dirección</span></td>
+                                            <td>
+                                               <p t-if="doc.company_id.street" t-field="doc.company_id.street"/>
+                                <span>, </span>
+                                <span t-if="doc.company_id.city" t-field="doc.company_id.city"/>
+                                <span>, </span>
+                                <span t-if="doc.company_id.state_id" t-field="doc.company_id.state_id.name"/><span>, </span>
+                                <span t-if="doc.company_id.country_id" t-field="doc.company_id.country_id.name"/>
+                                <span>, </span>
+                                <span t-if="doc.company_id.zip" t-field="doc.company_id.zip"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="row mt-5">
+                    <div class="col-12">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Fecha</th>
+                                    <th class="text-center">Número Pag</th>
+                                    <th class="text-center">Tipo</th>
+                                    <th class="text-center">N° Doc.</th>
+                                    <th class="text-center">N° Control</th>
+                                    <th class="text-center">Monto de Documento</th>
+                                    <th class="text-center">Monto Abonad</th>
+                                    <th class="text-center">Monto Objeto</th>
+                                    <th class="text-center">Tarif a %</th>
+                                    <th class="text-center">Código Concept</th>
+                                    <th class="text-center">Sustraend</th>
+                                    <th class="text-center">Impues to</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="total_taxed_amount" t-value="0"/>
+                                <t t-set="total_ret_amount" t-value="0"/>
+                                <tr t-foreach="doc.ret_line_ids" t-as="line">
+                                    <td class="text-center"><span t-field="line.move_id.date"/></td>
+                                    <td class="text-center"><span t-field="line.ret_id.name"/></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"><span t-field="line.move_id.ref"/></td>
+                                    <td class="text-center"><span t-field="line.ctrl_num"/></td>
+                                    <td class="text-center"><span t-field="line.move_id.amount_total"/></td>
+                                    <td class="text-center"><span t-field="line.move_id.amount_total"/></td>
+                                    <td class="text-right"><span t-field="line.taxed_amount"/></td>
+                                    <t t-set="total_taxed_amount" t-value="total_taxed_amount + line.taxed_amount"/>
+                                    <td class="text-center"><span t-field="line.ret_percent"/></td>
+                                    <td class="text-center"><span t-field="line.code_id.id"/></td>
+                                    <td class="text-right"><span t-field="line.sub_amount"/></td>
+                                    <td class="text-right"><span t-field="line.ret_amount"/></td>
+                                    <t t-set="total_ret_amount" t-value="total_ret_amount + line.ret_amount"/>
+                                </tr>
+                                <tr>
+                                    <td class="text-center"><p><strong>Totales</strong></p></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-right"><span t-esc="total_taxed_amount"/></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-right"></td>
+                                    <td class="text-right"><span t-esc="total_ret_amount"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_template_retention_islr">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="pragtech_retention_report.report_retention_islr_document" t-lang="doc.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_retentions_islr" model="ir.actions.report">
+        <field name="name">Report</field>
+        <field name="model">retention.retentions</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">pragtech_retention_report.report_template_retention_islr</field>
+        <field name="report_file">pragtech_retention_report.report_template_retention_islr</field>
+        <field name="print_report_name">(object.name)</field>
+        <field name="binding_model_id" eval="False"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="pragtech_retention_report.paperformat_retention_islr_letter"/>
+    </record>
+</odoo>

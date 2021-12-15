@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="retention_retention_detailed_form_inherited" model="ir.ui.view">
+        <field name="model">retention.retentions</field>
+        <field name="inherit_id" ref="pragtech_odoo_retentions.retention_retention_detailed_form"/>
+        <field name="arch" type="xml">
+            <header position="inside">
+                <button name="print_retention_report" string="Print"
+                        type="object" class="btn btn-primary"/>
+            </header>
+        </field>
+    </record>
+</odoo>

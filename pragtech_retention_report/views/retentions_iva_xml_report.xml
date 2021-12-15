@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="retentions_iva_xml_document"><![CDATA[<?xml version="1.0" encoding="utf-8"?>]]>
+<t t-foreach="docs" t-as="doc"><RelacionRetencionesISLR t-att-Periodo="start_period" t-att-RifAgente="vat">
+    <t t-foreach="retention_line_recs" t-as="line">
+<DetalleRetencion>
+<RifRetenido><t t-esc="line.move_id.partner_id.vat"/></RifRetenido>
+<NumeroFactura><t t-esc="line.move_id.ref"/></NumeroFactura>
+<NumeroControl><t t-esc="line.move_id.cnt_num"/></NumeroControl>
+<FechaOperacion><t t-esc="line.ret_id.ret_date"/></FechaOperacion>
+<CodigoConcepto><t t-esc="line.code_id.id"/></CodigoConcepto>
+<MontoOperacion><t t-esc="line.ret_amount" t-options='{"widget": "float", "precision": 2}'/></MontoOperacion>
+<PorcentajeRetencion><t t-esc="line.ret_percent" t-options='{"widget": "float", "precision": 2}'/></PorcentajeRetencion>
+</DetalleRetencion></t>
+</RelacionRetencionesISLR></t>
+    </template>
+
+    <record id="action_xml_report_retentions" model="ir.actions.report">
+        <field name="name">Retentions ISLR XML</field>
+        <field name="model">retention.report.wizard</field>
+        <field name="report_type">qweb-xml</field>
+        <field name="report_name">pragtech_retention_report.retentions_iva_xml_document</field>
+        <field name="report_file">pragtech_retention_report.retentions_iva_xml_document</field>
+        <field name="print_report_name">(object.name)</field>
+    </record>
+</odoo>
