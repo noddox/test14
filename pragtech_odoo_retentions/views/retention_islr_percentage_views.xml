@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_retention_islr_percentage_form_view" model="ir.ui.view">
+            <field name="name">Retention ISLR Percentage Form</field>
+            <field name="model">retention.islr.percentage</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="concept_code"/>
+                            <field name="person_type_code"/>
+                            <field name="ret_percentage"/>
+                            <field name="ret_portion"/>
+                            <field name="sw_has_subtract"/>
+
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="action_retention_islr_percentage_tree" model="ir.ui.view">
+            <field name="name">Retention ISLR Percentage Tree</field>
+            <field name="model">retention.islr.percentage</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="concept_code"/>
+                    <field name="person_type_code"/>
+                    <field name="ret_percentage"/>
+                    <field name="ret_portion"/>
+                    <field name="sw_has_subtract"/>
+
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="action_retention_islr_percentage" model="ir.actions.act_window">
+            <field name="name">Retention ISLR Percentages</field>
+            <field name="res_model">retention.islr.percentage</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_retention_islr_percentage" name="Retention ISLR Percentage"
+                  parent="menu_invoice_retention_main_menu"
+                  action="action_retention_islr_percentage" sequence="20"
+                  groups="account.group_account_user"/>
+
+        <!--    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+
+        <record id="action_retention_type_form_view" model="ir.ui.view">
+            <field name="name">Retention Type Form</field>
+            <field name="model">ret.type</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="ret_type"/>
+                            <field name="name"/>
+                            <field name="cust_posting_account"/>
+                            <field name="vend_posting_account"/>
+                            <field name="journal_id"/>
+                            <field name="ret_tax_id"/>
+
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="action_retention_type_tree" model="ir.ui.view">
+            <field name="name">Retention Type Tree</field>
+            <field name="model">ret.type</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="ret_type"/>
+                    <field name="name"/>
+
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="action_retention_type" model="ir.actions.act_window">
+            <field name="name">Retention Types</field>
+            <field name="res_model">ret.type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_retention_type" name="Retention Type"
+                  parent="menu_invoice_retention_main_menu"
+                  action="action_retention_type" sequence="20"
+                  groups="account.group_account_user"/>
+
+
+        <!--    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+    </data>
+</odoo>

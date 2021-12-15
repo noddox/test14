@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+
+    <record id="islr_account_move_wizard" model="ir.ui.view">
+        <field name="name">account.move.wizard.form</field>
+        <field name="model">account.move.wizard</field>
+        <field name="arch" type="xml">
+            <form string="ISLR Creation">
+
+                <group>
+                    <field name="partner_id"/>
+                    <field name="ret_date"/>
+                    <field name="ret_islr_factor"/>
+                    <field name="ret_islr_tax_unit"/>
+
+                    <field name="invoice_line_ids"/>
+
+                    <field name="islr_taxable_amount" readonly="True"/>
+                    <field name="islr_tax_amount" readonly="True"/>
+                    <field name="person_type_code" readonly="True"/>
+                    <field name="islr_retention_ammount" readonly="True"/>
+                    <field name="subtract_amount" readonly="True"/>
+                    <field name="net_retention" readonly="True"/>
+                    <field name="move_id" invisible="1"/>
+
+
+                </group>
+
+                <footer>
+                    <button string="Create ISLR Retention" type="object" name="create_islr_retention"
+                            class="btn-primary"/>or
+                    <button name="cancel" string="Cancel" special="cancel" class="oe_link"/>
+
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

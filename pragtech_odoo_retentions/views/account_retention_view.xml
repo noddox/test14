@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="journal_entry_retention_form_view" model="ir.ui.view">
+            <field name="name">Journal Entry Retention Form Inherit</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <data>
+<!--                    <xpath expr="//header" position="inside">-->
+
+
+<!--&lt;!&ndash;                        <button name="button_iva_retention" type="object" string="IVA retention"&ndash;&gt;-->
+<!--&lt;!&ndash;                                class="oe_highlight" />&ndash;&gt;-->
+<!--&lt;!&ndash;                        <button name="button_islr_retention" type="object" string="ISLR retention"&ndash;&gt;-->
+<!--&lt;!&ndash;                                class="oe_highlight" />&ndash;&gt;-->
+<!--                        <field name="iva_retention_status"-->
+<!--                               />-->
+<!--                        <field name="islr_retention_status"-->
+<!--                               />-->
+
+<!--                    </xpath>-->
+                    <field name="partner_id" position="after">
+                        <field name="retention_boolean" invisible="1"/>
+                        <field name="islr_retention_boolean" invisible="1"/>
+                    </field>
+                </data>
+            </field>
+        </record>
+    </data>
+</odoo>
+

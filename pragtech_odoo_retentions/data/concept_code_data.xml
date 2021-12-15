@@ -1,0 +1,79 @@
+<odoo>
+    <data noupdate="0">
+
+
+        <record id="zero_concept_id" model="retention.islr.concept">
+            <field name="name">No Applica</field>
+            <field name="concept_code">0</field>
+            <field name="name_full">No Applica</field>
+            <field name="numeral">0</field>
+            <field name="literal">0</field>
+
+        </record>
+        <data>
+<!--                   <data noupdate="1">-->
+
+            <!-- Sequences for Retention ID-IVA-supplier-->
+            <record id="seq_retention_retentions_iva1" model="ir.sequence">
+                <field name="name">Retention ID IVA/supplier</field>
+                <field name="code">retention.retentions.iva1</field>
+                <field name="prefix">RETIVASUP</field>
+                <field name="padding">5</field>
+                <field name="company_id" eval="False"/>
+            </record>
+
+            <!-- Sequences for Retention ID-ISLR-supplier-->
+            <record id="seq_retention_retentions_islr1" model="ir.sequence">
+                <field name="name">Retention ID ISLR/supplier</field>
+                <field name="code">retention.retentions.islr1</field>
+                <field name="prefix">RETISLRSUP</field>
+                <field name="padding">5</field>
+                <field name="company_id" eval="False"/>
+            </record>
+
+            <!-- Sequences for Retention ID-IVA-customer-->
+            <record id="seq_retention_retentions_iva2" model="ir.sequence">
+                <field name="name">Retention ID IVA/customer</field>
+                <field name="code">retention.retentions.iva2</field>
+                <field name="prefix">RETIVACUS</field>
+                <field name="padding">5</field>
+                <field name="company_id" eval="False"/>
+            </record>
+
+            <!-- Sequences for Retention ID-ISLR-customer-->
+            <record id="seq_retention_retentions_islr2" model="ir.sequence">
+                <field name="name">Retention ID ISLR/supplier</field>
+                <field name="code">retention.retentions.islr2</field>
+                <field name="prefix">RETISLRCUS</field>
+                <field name="padding">5</field>
+                <field name="company_id" eval="False"/>
+            </record>
+
+
+            <!-- Sequences for ret_name_iva bill -->
+            <record id="seq_retention_retname_iva" model="ir.sequence">
+                <field name="name">Retention Name IVA bill</field>
+                <field name="code">retention.retname.iva</field>
+                <field name="prefix"></field>
+                <field name="padding">8</field>
+                <field name="company_id" eval="False"/>
+            </record>
+
+            <!-- Sequences for ret_name_islr bill-->
+            <record id="seq_retention_retname_islr" model="ir.sequence">
+                <field name="name">Retention Name ISLR Bill</field>
+                <field name="code">retention.retname.islr</field>
+                <field name="prefix"></field>
+                <field name="padding">8</field>
+                <field name="company_id" eval="False"/>
+            </record>
+
+
+
+
+        </data>
+
+
+    </data>
+</odoo>
+

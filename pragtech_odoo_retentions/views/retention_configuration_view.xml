@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_tax_payer_type_form_view" model="ir.ui.view">
+            <field name="name">Tax Payer Type</field>
+            <field name="model">tax.payer.type</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="tax_payer_type"/>
+
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="action_tax_payer_type_tree" model="ir.ui.view">
+            <field name="name">Tax Payer Type Tree</field>
+            <field name="model">tax.payer.type</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="tax_payer_type"/>
+
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="action_tax_payer_type" model="ir.actions.act_window">
+            <field name="name">Tax Payer Types</field>
+            <field name="res_model">tax.payer.type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_invoice_retention_main_menu" name="Retention Configurations"
+                  parent="account.menu_finance_configuration"
+                  sequence="10"
+                  groups="account.group_account_user"/>
+
+        <menuitem id="menu_tax_payer_type" name="Tax Payer Type"
+                  parent="menu_invoice_retention_main_menu"
+                  action="action_tax_payer_type" sequence="20"
+                  groups="account.group_account_user"/>
+
+        <!--    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+
+        <record id="action_retention_iva_percentage_form_view" model="ir.ui.view">
+            <field name="name">Retention IVA Percentage</field>
+            <field name="model">retention.iva.percentage</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="ret_percentage"/>
+                            <field name="ret_value"/>
+
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="action_retention_iva_percentage_tree" model="ir.ui.view">
+            <field name="name">Retention IVA Percentage Tree</field>
+            <field name="model">retention.iva.percentage</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="ret_percentage"/>
+                    <field name="ret_value"/>
+
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="action_retention_iva_percentage" model="ir.actions.act_window">
+            <field name="name">Retention IVA Percentages</field>
+            <field name="res_model">retention.iva.percentage</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_retention_iva_percentage" name="Retention IVA Percentage"
+                  parent="menu_invoice_retention_main_menu"
+                  action="action_retention_iva_percentage" sequence="20"
+                  groups="account.group_account_user"/>
+
+
+        <!--    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+
+        <record id="action_retention_islr_person_type_form_view" model="ir.ui.view">
+            <field name="name">Retention ISLR Person Type</field>
+            <field name="model">retention.islr.person.type</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="person_type_code"/>
+                            <field name="name"/>
+
+
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="action_retention_islr_person_type_tree" model="ir.ui.view">
+            <field name="name">Retention ISLR Person Type Tree</field>
+            <field name="model">retention.islr.person.type</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="person_type_code"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="action_retention_islr_person_type" model="ir.actions.act_window">
+            <field name="name">Retention ISLR Person Types</field>
+            <field name="res_model">retention.islr.person.type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_retention_islr_person_type" name="Retention ISLR Person Type"
+                  parent="menu_invoice_retention_main_menu"
+                  action="action_retention_islr_person_type" sequence="20"
+                  groups="account.group_account_user"/>
+
+
+    </data>
+</odoo>

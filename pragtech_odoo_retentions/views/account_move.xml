@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="view_invoice_retention_line">
+        <field name="name">account.invoice.retention.line.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_vendor_bill_id']" position="after">
+                <field name="cnt_num"/>
+            </xpath>
+            <xpath expr="//button[@name='open_reconcile_view']" position="after">
+                <button  name='iva1' icon="fa-file-text-o" class="oe_stat_button" attrs="{'invisible': [('iva_retention_status', '=', 'created')]}">
+                            <div class="o_form_field  o_stat_info">
+                            <span class="o_stat_value">
+						        <field name="iva_retention_status" />
+                            </span>
+                            <span class="o_stat_text"><strong><font size="1">IVA Status</font></strong></span>
+                            </div>
+			            </button>
+                <button  name='iva2' type="object" icon="fa-file-text" class="oe_stat_button" attrs="{'invisible': ['|',('iva_retention_status', '=', 'not_created'),('iva_retention_status', '=', 'not_applied')]}">
+                            <div class="o_form_field  o_stat_info">                                                                                                                        
+                            <span class="o_stat_value">
+						        <field name="iva_retention_status" />
+                            </span>
+                            <span class="o_stat_text"><strong><font size="1">IVA Status</font></strong></span>
+                            </div>
+			            </button>
+                <button  name='islr1' icon="fa-file-text-o" class="oe_stat_button" attrs="{'invisible': [('islr_retention_status', '=', 'created')]}">
+                            <div class="o_form_field  o_stat_info">
+                            <span class="o_stat_value">
+						        <field name="islr_retention_status" />
+                            </span>
+                            <span class="o_stat_text"><strong><font size="1">ISLR Status</font></strong></span>
+                            </div>
+			            </button>
+                <button  name='islr2' type="object" icon="fa-file-text" class="oe_stat_button" attrs="{'invisible': ['|',('islr_retention_status', '=', 'not_created'),('state', '=', 'not_applied')]}">
+                            <div class="o_form_field  o_stat_info">
+                            <span class="o_stat_value">
+						        <field name="islr_retention_status" />
+                            </span>
+                            <span class="o_stat_text"><strong><font size="1">ISLR Status</font></strong></span>
+                            </div>
+			            </button>
+
+            </xpath>
+            <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='account_id']" position="after">
+                <field name="concept_code" invisible="1" readonly="1"/>
+                <field name="islr_retention_line_status" invisible="1" readonly="1"/>
+
+            </xpath>
+
+<!--            <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='price_subtotal']" position="after">-->
+<!--                <button name="button_insert_concept_code" type="object" string="Insert concept code"-->
+<!--                        class="oe_highlight"-->
+<!--                        attrs="{'invisible': [('tax_line_id','=',False), ('tax_ids','=',[])]}"-->
+<!--                />-->
+<!--            </xpath>-->
+
+        </field>
+    </record>
+
+</odoo>

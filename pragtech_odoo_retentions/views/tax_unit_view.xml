@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_tax_unit_form_view" model="ir.ui.view">
+            <field name="name">Tax Unit Form</field>
+            <field name="model">tax.unit</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="type"/>
+                            <field name="init_date"/>
+                            <field name="end_date"/>
+                            <field name="tax_unit_amount"/>
+                            <field name="gov_doc_number"/>
+
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="action_tax_unit_tree" model="ir.ui.view">
+            <field name="name">TaxUnit Tree</field>
+            <field name="model">tax.unit</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="type"/>
+                    <field name="init_date"/>
+                    <field name="end_date"/>
+                    <field name="tax_unit_amount"/>
+                    <field name="gov_doc_number"/>
+
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="action_tax_unit" model="ir.actions.act_window">
+            <field name="name">Tax Units</field>
+            <field name="res_model">tax.unit</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_tax_unit" name="Tax Unit"
+                  parent="menu_invoice_retention_main_menu"
+                  action="action_tax_unit" sequence="20"
+                  groups="account.group_account_user"/>
+
+        <!--    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+
+        <record id="action_retention_islr_factor_form_view" model="ir.ui.view">
+            <field name="name">Retention ISLR Factor Form</field>
+            <field name="model">retention.islr.factor</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="init_date"/>
+                            <field name="factor_value"/>
+                            <field name="end_date"/>
+
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="action_retention_islr_factor_tree" model="ir.ui.view">
+            <field name="name">Retention ISLR Factor Tree</field>
+            <field name="model">retention.islr.factor</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="init_date"/>
+                    <field name="factor_value"/>
+                    <field name="end_date"/>
+
+
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="action_retention_islr_factor" model="ir.actions.act_window">
+            <field name="name">Retention ISLR Factors</field>
+            <field name="res_model">retention.islr.factor</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_retention_islr_factor" name="Retention ISLR Factor"
+                  parent="menu_invoice_retention_main_menu"
+                  action="action_retention_islr_factor" sequence="20"
+                  groups="account.group_account_user"/>
+
+
+        <!--    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+
+        <record id="action_retention_islr_concept_form_view" model="ir.ui.view">
+            <field name="name">Retention ISLR Concept Type</field>
+            <field name="model">retention.islr.concept</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="concept_code"/>
+                            <field name="name_full"/>
+                            <field name="numeral"/>
+                            <field name="literal"/>
+
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="action_retention_islr_concept_tree" model="ir.ui.view">
+            <field name="name">Retention ISLR Concept Tree</field>
+            <field name="model">retention.islr.concept</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="concept_code"/>
+                    <field name="name_full"/>
+                    <field name="numeral"/>
+                    <field name="literal"/>
+
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="action_retention_islr_concept" model="ir.actions.act_window">
+            <field name="name">Retention ISLR Concept Types</field>
+            <field name="res_model">retention.islr.concept</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_retention_concept" name="Retention ISLR Concept"
+                  parent="menu_invoice_retention_main_menu"
+                  action="action_retention_islr_concept" sequence="20"
+                  groups="account.group_account_user"/>
+
+
+    </data>
+</odoo>

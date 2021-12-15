@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="create_iva_retention_wizard_view_form" model="ir.ui.view">
+        <field name="name">iva.retention.wizard.form</field>
+        <field name="model">iva.invoice.retention.wizard</field>
+        <field name="arch" type="xml">
+            <form string="IVA Retention Creation">
+                <group>
+
+                    <field name="ret_date"/>
+                    <field name="iva_taxable_amount"/>
+                    <field name="iva_tax_amount"/>
+                    <field name="ret_iva_percent"/>
+                    <field name="iva_retention_ammount"/>
+                    <field name="subtract_amount"/>
+                    <field name="net_retention"/>
+
+                </group>
+
+                <footer>
+                    <button name="create_iva_retention" string="Create" type="object" class="btn-primary"/>
+
+                    <button string="Close" class="btn-primary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+
+</odoo>

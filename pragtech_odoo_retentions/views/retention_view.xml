@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--    <data>-->
+<!--        <record id="action_invoice_retention_form_view" model="ir.ui.view">-->
+<!--            <field name="name">Invoice Retention</field>-->
+<!--            <field name="model">invoice.retention</field>-->
+<!--            <field name="type">form</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <form>-->
+
+<!--                    <sheet>-->
+
+<!--                        <group>-->
+<!--                            <group>-->
+<!--                                <field name="partner_id"/>-->
+<!--                                &lt;!&ndash;                                <field name="payment_type"/>&ndash;&gt;-->
+<!--                                <field name="partner_type"/>-->
+<!--                                <field name="ret_type"/>-->
+<!--                                <field name="ret_date"/>-->
+<!--                                <field name="bill_date"/>-->
+<!--                                <field name="move_ref"/>-->
+
+<!--                            </group>-->
+<!--                            <group>-->
+<!--                                <field name="taxable_amount"/>-->
+<!--                                <field name="tax_amount"/>-->
+<!--                                <field name="ret_percentage"-->
+<!--                                       attrs="{'invisible':[('ret_iva_percentage', '!=', False)]}"-->
+<!--                                />-->
+<!--                                <field name="ret_iva_percentage"-->
+<!--                                       attrs="{'invisible':[('ret_percentage', '!=', False)]}"-->
+<!--                                />-->
+<!--                                <field name="ret_amount"/>-->
+<!--                                <field name="subtract_amount"/>-->
+<!--                                <field name="net_retention"/>-->
+
+<!--                            </group>-->
+<!--                        </group>-->
+
+
+<!--                    </sheet>-->
+<!--                </form>-->
+<!--            </field>-->
+<!--        </record>-->
+
+
+<!--        &lt;!&ndash;        <record id="action_invoice_retention_search_view_master" model="ir.ui.view">&ndash;&gt;-->
+<!--        &lt;!&ndash;            <field name="name">requisition.search</field>&ndash;&gt;-->
+<!--        &lt;!&ndash;            <field name="model">invoice.retention</field>&ndash;&gt;-->
+<!--        &lt;!&ndash;            <field name="arch" type="xml">&ndash;&gt;-->
+<!--        &lt;!&ndash;                <search>&ndash;&gt;-->
+<!--        &lt;!&ndash;                    <field name="partner_id"/>&ndash;&gt;-->
+<!--        &lt;!&ndash;                    <field name="payment_type"/>&ndash;&gt;-->
+<!--        &lt;!&ndash;                    <field name="partner_type"/>&ndash;&gt;-->
+<!--        &lt;!&ndash;                    <field name="ret_type"/>&ndash;&gt;-->
+
+<!--        &lt;!&ndash;                </search>&ndash;&gt;-->
+<!--        &lt;!&ndash;            </field>&ndash;&gt;-->
+<!--        &lt;!&ndash;        </record>&ndash;&gt;-->
+
+<!--        <record id="action_invoice_retention_tree" model="ir.ui.view">-->
+<!--            <field name="name">Invoice Retention Tree</field>-->
+<!--            <field name="model">invoice.retention</field>-->
+<!--            <field name="type">tree</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <tree>-->
+<!--                    <field name="partner_id"/>-->
+<!--                    &lt;!&ndash;                    <field name="payment_type"/>&ndash;&gt;-->
+<!--                    <field name="partner_type"/>-->
+<!--                    <field name="move_ref"/>-->
+
+<!--                </tree>-->
+<!--            </field>-->
+<!--        </record>-->
+
+
+<!--        &lt;!&ndash;        <record id="view_account_retention_search" model="ir.ui.view">&ndash;&gt;-->
+<!--        &lt;!&ndash;            <field name="name">invoice.retention.search22</field>&ndash;&gt;-->
+<!--        &lt;!&ndash;            <field name="model">invoice.retention</field>&ndash;&gt;-->
+<!--        &lt;!&ndash;            <field name="arch" type="xml">&ndash;&gt;-->
+<!--        &lt;!&ndash;                <field name="partner_id" string="Customer/Vendor"/>&ndash;&gt;-->
+<!--        &lt;!&ndash;                <field name="partner_type" string="Partner Type"/>&ndash;&gt;-->
+
+<!--        &lt;!&ndash;                <separator/>&ndash;&gt;-->
+<!--        &lt;!&ndash;                <search string="Payments">&ndash;&gt;-->
+<!--        &lt;!&ndash;                    <filter string="Customer Retention"&ndash;&gt;-->
+<!--        &lt;!&ndash;                            name="inbound_filter"&ndash;&gt;-->
+<!--        &lt;!&ndash;                            domain="[('partner_type', '=', 'customer')]"/>&ndash;&gt;-->
+<!--        &lt;!&ndash;                    <filter string="Vendor Retention"&ndash;&gt;-->
+<!--        &lt;!&ndash;                            name="outbound_filter"&ndash;&gt;-->
+<!--        &lt;!&ndash;                            domain="[('partner_type', '=', 'supplier')]"/>&ndash;&gt;-->
+
+<!--        &lt;!&ndash;                </search>&ndash;&gt;-->
+<!--        &lt;!&ndash;            </field>&ndash;&gt;-->
+<!--        &lt;!&ndash;        </record>&ndash;&gt;-->
+
+
+<!--        <record id="retention_custom_search_view" model="ir.ui.view">-->
+<!--            <field name="name">invoice.retention.search111</field>-->
+<!--            <field name="model">invoice.retention</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <search string="Retention">-->
+<!--                    <field name="partner_id" string="Customer/Vendor"/>-->
+<!--                    <field name="partner_type" string="Partner Type"/>-->
+<!--                    <filter string="Customer Retention"-->
+<!--                            name="inbound_filter"-->
+<!--                            domain="[('partner_type', '=', 'customer')]"/>-->
+<!--                    <filter string="Vendor Retention"-->
+<!--                            name="outbound_filter"-->
+<!--                            domain="[('partner_type', '=', 'supplier')]"/>-->
+
+<!--                </search>-->
+<!--            </field>-->
+<!--        </record>-->
+
+<!--        <record id="action_invoice_retention_customer" model="ir.actions.act_window">-->
+<!--            <field name="name">Invoice Retentions</field>-->
+<!--            <field name="res_model">invoice.retention</field>-->
+<!--            <field name="context">{'search_default_inbound_filter': 1}</field>-->
+<!--            <field name="view_mode">tree,form,search</field>-->
+<!--        </record>-->
+
+
+<!--        <record id="action_invoice_retention_vendor" model="ir.actions.act_window">-->
+<!--            <field name="name">Invoice Retentions</field>-->
+<!--            <field name="res_model">invoice.retention</field>-->
+<!--            <field name="context">{'search_default_outbound_filter':'supplier'}</field>-->
+<!--            <field name="view_mode">tree,form,search</field>-->
+<!--        </record>-->
+
+<!--        <menuitem id="menu_invoice_retention_customer" name="Invoice Retention"-->
+<!--                  parent="account.menu_finance_receivables"-->
+<!--                  action="action_invoice_retention_customer" sequence="20"-->
+<!--                  groups="account.group_account_user"/>-->
+
+<!--        <menuitem id="menu_invoice_retention_vendor" name="Bill Retention"-->
+<!--                  parent="account.menu_finance_payables"-->
+<!--                  action="action_invoice_retention_vendor" sequence="20"-->
+<!--                  groups="account.group_account_user"/>-->
+
+<!--        <menuitem id="menu_invoice_retention_main_menu" name="Retention Configurations"-->
+<!--                  parent="account.menu_finance_configuration"-->
+<!--                  sequence="10"-->
+<!--                  groups="account.group_account_user"/>-->
+
+<!--        &lt;!&ndash;        <menuitem id="menu_invoice_retention44" name="Retention"&ndash;&gt;-->
+<!--        &lt;!&ndash;                  parent="menu_invoice_retention_main_menu"&ndash;&gt;-->
+<!--        &lt;!&ndash;                  action="action_invoice_retention_vendor" sequence="20"&ndash;&gt;-->
+<!--        &lt;!&ndash;                  groups="account.group_account_user"/>&ndash;&gt;-->
+
+
+<!--    </data>-->
+</odoo>

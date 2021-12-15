@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="retention_retention_detailed_form" model="ir.ui.view">
+        <field name="name">Retention</field>
+        <field name="model">retention.retentions</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar" nolabel="1" readonly="1" />
+                    <button name="action_retention_confirm"
+                            states="draft" string="Confirm"
+                            type="object" />
+                    <button name="action_retention_cancel"
+                            states="confirm" string="Cancel"
+                            type="object" />
+                    <button name="action_retention_draft"
+                            states="cancel" string="Set to Draft"
+                            type="object" />
+
+
+                </header>
+                <sheet>
+                                        <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+
+                    <group>
+                        <group>
+<!--                            <field name="name"/>-->
+                            <field name="ret_date" attrs="{'readonly': ['|',('state', '=', 'confirm'),('state', '=', 'cancel')]}"/>
+                            <field name="partner_id" widget="res_partner_many2one" required="1" context="{'res_partner_search_mode': (context.get('default_partner_type','supplier') in ('supplier') and 'supplier')}" options="{'no_create': True}" attrs="{'readonly': ['|',('state', '=', 'confirm'),('state', '=', 'cancel')]}"/>
+
+                            <field name="ret_type_id" required="1" options="{'no_create': True}" attrs="{'readonly':[('check_ret', '=', True)]}"/>
+                            <field name="ret_per" options="{'no_create': True}" attrs="{'invisible':['|',('ret_type', '=', 'ISLR'),('ret_type', '=', False)], 'readonly':[('check_ret', '=', True)]}" />
+                            <field name="ret_type" invisible="1"/>
+<!--                            <field name="ret_iva_percent" attrs="{'invisible': [('parent.ret_type', '=', 'ISLR')],'required': [('parent.ret_type', '=', 'IVA')]}"/>-->
+                            <field name="partner_type" invisible="1" options="{'no_create': True}"/>
+                        </group>
+                        <group>
+                            <field name="ret_number" force_save="1" attrs="{'readonly':[('partner_type', '=', 'supplier')]}"/>
+<!--                            <field name="ret_number"/>-->
+                            <field name="memo" attrs="{'readonly': ['|',('state', '=', 'confirm'),('state', '=', 'cancel')]}"/>
+                            <field name="ret_behalf" attrs="{'readonly': ['|',('state', '=', 'confirm'),('state', '=', 'cancel')]}"/>
+                            <field name="check_ret" invisible="1"/>
+                            <field name="company_id" options="{'no_create': True}" attrs="{'readonly': ['|',('state', '=', 'confirm'),('state', '=', 'cancel')]}"/>
+                            <field name="ret_move_id" readonly="1"/>
+
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Retention Lines" name="retention_lines">
+                            <field name="ret_line_ids">
+                                <tree editable="bottom">
+                                    <field name="ret_date" invisible="1"/>
+                                    <field name="domain_new" invisible="1"/>
+                                    <field name="move_id" required="1" domain="domain_new" options="{'no_create': True}" attrs="{'readonly': ['|',('parent.state', '=', 'confirm'),('parent.state', '=', 'cancel')]}" />
+                                    <field name="move_line_id" domain="[('move_id', '=', move_id),('exclude_from_invoice_tab','=', False)]" options="{'no_create': True}"
+                                    attrs="{'column_invisible': [('parent.ret_type', '=', 'IVA')], 'required':[('parent.ret_type', '=', 'ISLR')], 'readonly': ['|',('parent.state', '=', 'confirm'),('parent.state', '=', 'cancel')]}"/>
+                                    <field name="ret_percentage" invisible="1"/>
+                                    <field name="taxed_amount" />
+                                    <field name="tax_amount" />
+                                    <field name="ret_percent"/>
+                                    <field name="sw_has_subtract" readonly="1" attrs="{'invisible': [('parent.ret_type', '=', 'IVA')]}"/>
+                                    <field name="ctrl_num"/>
+                                    <field name="code_id" options="{'no_create': True}" attrs="{'column_invisible': [('parent.ret_type', '=', 'IVA')], 'readonly': ['|',('parent.state', '=', 'confirm'),('parent.state', '=', 'cancel')]}" />
+
+                                    <field name="sub_amount" readonly="1"/>
+                                    <field name="ret_amount" readonly="1"/>
+                                    <field name="ret_behalf" invisible="1"/>
+                                    <field name="ret_behalf_partner" attrs="{'invisible':[('ret_behalf', '!=', True)]}"/>
+                                </tree>
+                                <form>
+                                    <group>
+                                        <group>
+                                            <field name="ret_date" invisible="1"/>
+                                            <field name="domain_new" invisible="1"/>
+                                            <field name="move_id" domain="domain_new"/>
+                                            <field name="ctrl_num"/>
+                                            <field name="code_id"/>
+                                        </group>
+                                        <group>
+                                            <field name="sub_amount"/>
+                                            <field name="taxed_amount"/>
+                                            <field name="tax_amount"/>
+                                            <field name="ret_percent"/>
+                                            <field name="ret_amount"/>
+                                        </group>
+                                    </group>
+                                </form>
+                            </field>
+                            <group class="oe_subtotal_footer oe_right">
+                                <field name="total_amount"/></group>
+
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="retention_retention_detailed_tree" model="ir.ui.view">
+        <field name="name">Retention</field>
+        <field name="model">retention.retentions</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="ret_date"/>
+                <field name="name"/>
+                <field name="ret_number"/>
+                <field name="partner_id"/>
+                <field name="ret_type_id"/>
+                <field name="total_amount"/>
+            </tree>
+        </field>
+    </record>
+
+            <record id="retention_custom_search_view1" model="ir.ui.view">
+            <field name="name">invoice.retention.search111</field>
+            <field name="model">retention.retentions</field>
+            <field name="arch" type="xml">
+                <search string="Retention">
+                    <field name="partner_id" string="Customer/Vendor"/>
+                    <field name="partner_type" string="Partner Type"/>
+                    <filter string="Vendor Retention"
+                            name="inbound_filter"
+                            domain="[('partner_type', '=', 'supplier')]"/>
+                    <filter string="Customer Retention"
+                            name="outbound_filter"
+                            domain="[('partner_type', '=', 'customer')]"/>
+
+                </search>
+            </field>
+        </record>
+    <record id="action_invoice_retention_new_detailed" model="ir.actions.act_window">
+        <field name="name">Invoice Retentions</field>
+        <field name="res_model">retention.retentions</field>
+                <field name="context">{'search_default_outbound_filter':'customer'}</field>
+        <field name="view_mode">tree,form,search</field>
+    </record>
+
+    <record id="action_invoice_retention_bill_detailed" model="ir.actions.act_window">
+        <field name="name">Bill Retentions</field>
+        <field name="res_model">retention.retentions</field>
+                <field name="context">{'search_default_inbound_filter':'supplier', 'default_partner_type':'supplier'}</field>
+        <field name="view_mode">tree,form,search</field>
+    </record>
+
+
+    <menuitem id="menu_invoice_retention_new" name="Invoice Retention"
+              parent="account.menu_finance_receivables"
+              action="action_invoice_retention_new_detailed" sequence="20"
+              groups="account.group_account_user"/>
+    <menuitem id="menu_invoice_retention_bill" name="Bill Retention"
+              parent="account.menu_finance_payables"
+              action="action_invoice_retention_bill_detailed" sequence="20"
+              groups="account.group_account_user"/>
+
+</odoo>

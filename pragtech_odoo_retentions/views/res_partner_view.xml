@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="res_partner_retention_setting_id" model="ir.ui.view">
+            <field name="name">res.partner.retention</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <!--                <xpath expr="//field[@name='category_id']" position="after">
+                                    <field name="supplier_rank" invisible="1"/>
+                                    <field name="customer_rank" invisible="1"/>
+                -->
+                <!--                    <field name="retention_iva_percentage_id" attrs="{'invisible':[('supplier_rank','&lt;',1)]}"/>-->
+                <xpath expr="//notebook/page[4]" position="after">
+                    <page string="Retention Info" >
+                        <group>
+                            <group>
+                                <field name="customer_rank" invisible="1"/>
+                                <field name="supplier_rank" invisible="1"/>
+
+                                <field name="person_type_code_id" options="{'no_create': True}"/>
+
+                                <field name="tax_payer_type_id" options="{'no_create': True}"/>
+                            </group>
+                            <group>
+                                <field name="retention_boolean" invisible="1"/>
+                                <field name="retention_iva_percentage_id"
+                                       attrs="{'invisible':[('retention_boolean', '!=', True)]}"
+                                 options="{'no_create': True}"/>
+                                <field name="fiscal_address"
+
+                                />
+                            </group>
+                        </group>
+                    </page>
+
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="res_users_retention_setting_id" model="ir.ui.view">
+            <field name="name">res.users.retention</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[2]" position="after">
+                     <page string="Retention">
+                       <group string="Retention Configuration">
+                          <field name="retention_boolean" invisible="1"/>
+	                    <field name="tax_payer_type_id" options="{'no_create': True}"/>
+<!--	                    <field name="person_type_name" />-->
+
+	                    <field name="retention_iva_percentage_id"
+                               attrs="{'invisible':[('retention_boolean', '!=', True)]}"
+                              />
+                       </group>
+                     </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
